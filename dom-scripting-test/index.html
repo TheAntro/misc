@@ -14,11 +14,24 @@
         </div>
 
         <script>
-            document.getElementById("clicker").addEventListener("click", function() {
+            function removeTheElement() {
                 var parent = document.getElementById("container");
                 var toRemove = document.getElementById("toRemove");
                 parent.removeChild(toRemove);
+            }
+
+            /* 
+            Need to use the function.bind(this), as with just function() the function will be called
+            when the script is read. You could also leave the () out:
+            addEventListener("click", removeTheElement); But this would not
+            allow passing parameters. With this you can also pass parameters: like (this, 5)
+
+            One more way (that also allows arguments) would be to wrap in function like this:
+            document.getElementById("clicker").addEventListener("click", function {
+                removeTheElement();
             });
+             */ 
+            document.getElementById("clicker").addEventListener("click", removeTheElement.bind(this));
         </script>
     </body>
 </html>
